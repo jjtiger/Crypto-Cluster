@@ -1,7 +1,10 @@
 # Crypto-Cluster
-As a Senior Manager at the Advisory Services team on a Big Four firm. One of your most important clients, a prominent investment bank, is interested in offering a new cryptocurrencies investment portfolio for its customers, however, they are lost in the immense universe of cryptocurrencies. Tasked with analysis, interpretation, and presentation by generating a report of what cryptocurrencies are available on the trading market and how they can be grouped using classification.
-In this assignment, there are unsupervivsed learning and Amazon SageMaker skills exhibited by clustering cryptocurrencies and creating plots to present results.
-Main tasks:
+As a Senior Manager at the Advisory Services team on a Big Four firm. One of your most important clients, a prominent investment bank, is interested in offering a new cryptocurrencies investment portfolio for its customers, however, they are lost in the immense universe of cryptocurrencies. 
+
+Tasked with analysis, interpretation, and presentation by generating a report of what cryptocurrencies are available on the trading market and how they can be grouped using classification.
+In this project, there are unsupervivsed learning and Amazon SageMaker skills exhibited by clustering cryptocurrencies and creating plots to present results.
+
+Main goals:
 
 
 Data Preprocessing: Prepare data for dimension reduction with PCA and clustering using K-Means.
@@ -25,98 +28,77 @@ Files
 
 crypto_clustering.ipynb
 
-
-
-Instructions
-
 Data Preprocessing
 
-Using the following requests library, retreive the necessary data from the following API endpoint from CryptoCompare - https://min-api.cryptocompare.com/data/all/coinlist. HINT: You will need to use the 'Data' key from the json response, then transpose the DataFrame. Name your DataFrame crypto_df.
+Using the following requests library, retreive the necessary data from the following API endpoint from CryptoCompare - https://min-api.cryptocompare.com/data/all/coinlist.
+
+Data loaded into a Pandas DataFrame
 
 
-With the data loaded into a Pandas DataFrame, continue with the following data preprocessing tasks.
+Clean columns: 'CoinName','Algorithm','IsTrading','ProofType','TotalCoinsMined','TotalCoinSupply'
 
 
-Keep only the necessary columns: 'CoinName','Algorithm','IsTrading','ProofType','TotalCoinsMined','TotalCoinSupply'
+Keept only the cryptocurrencies that are trading.
 
 
-Keep only the cryptocurrencies that are trading.
+Keept only the cryptocurrencies with a working algorithm.
 
 
-Keep only the cryptocurrencies with a working algorithm.
+Removed the IsTrading column.
 
 
-Remove the IsTrading column.
+Removed all cryptocurrencies with at least one null value.
 
 
-Remove all cryptocurrencies with at least one null value.
+Removed all cryptocurrencies that have no coins mined.
 
 
-Remove all cryptocurrencies that have no coins mined.
+Dropped all rows where there are 'N/A' text values.
 
 
-Drop all rows where there are 'N/A' text values.
+Stored the names of all cryptocurrencies in a DataFrame named coins_name, use the crypto_df.index as the index for this new DataFrame.
 
 
-Store the names of all cryptocurrencies in a DataFrame named coins_name, use the crypto_df.index as the index for this new DataFrame.
+Removed the CoinName column.
 
 
-Remove the CoinName column.
+Created dummy variables for all the text features, and store the resulting data in a DataFrame named X.
 
 
-Create dummy variables for all the text features, and store the resulting data in a DataFrame named X.
-
-
-Use the StandardScaler from sklearn to standardize all the data of the X DataFrame. Remember, this is important prior to using PCA and K-Means algorithms.
+Used the StandardScaler from sklearn to standardize all the data of the X DataFrame. Remember, this is important prior to using PCA and K-Means algorithms.
 
 
 
 Reducing Data Dimensions Using PCA
-Use the PCA algorithm from sklearn to reduce the dimensions of the X DataFrame down to three principal components.
-Once you have reduced the data dimensions, create a DataFrame named pcs_df using as columns names "PC 1", "PC 2" and "PC 3"; use the crypto_df.index as the index for this new DataFrame.
+Used the PCA algorithm from sklearn to reduce the dimensions of the X DataFrame down to three principal components.
 
-
+Once reduced, created a DataFrame named pcs_df using as columns names "PC 1", "PC 2" and "PC 3"; use the crypto_df.index as the index for this new DataFrame.
 
 Clustering Cryptocurrencies Using K-Means
-KMeans algorithm from sklearn is used to cluster the cryptocurrencies using the PCA data.
-Tasks:
+
+Used KMeans algorithm from sklearn is used to cluster the cryptocurrencies using the PCA data.
+
+Created an Elbow Curve to find the best value for k using the pcs_df DataFrame.
+
+Defined the best value for k, ran the Kmeans algorithm to predict the k clusters for the cryptocurrencies data. Used the pcs_df to run the KMeans algorithm.
 
 
-Create an Elbow Curve to find the best value for k using the pcs_df DataFrame.
-
-
-Once you define the best value for k, run the Kmeans algorithm to predict the k clusters for the cryptocurrencies data. Use the pcs_df to run the KMeans algorithm.
-
-
-Create a new DataFrame named clustered_df, that includes the following columns "Algorithm", "ProofType", "TotalCoinsMined", "TotalCoinSupply", "PC 1", "PC 2", "PC 3", "CoinName", "Class". You should maintain the index of the crypto_df DataFrames as is shown bellow.
+Created a new DataFrame named clustered_df, that included the following columns "Algorithm", "ProofType", "TotalCoinsMined", "TotalCoinSupply", "PC 1", "PC 2", "PC 3", "CoinName", "Class". Maintained the index of the crypto_df DataFrames as shown.
 
 
 
 
 Visualizing Results
-Create data visualization to present the final results. Perform the following tasks:
+Created data visualization to present the final results. Performed the following tasks:
 
 
-Create a scatter plot using hvplot.scatter, to present the clustered data about cryptocurrencies having x="TotalCoinsMined" and y="TotalCoinSupply" to contrast the number of available coins versus the total number of mined coins. Use the hover_cols=["CoinName"] parameter to include the cryptocurrency name on each data point.
+Created a scatter plot using hvplot.scatter, to present the clustered data about cryptocurrencies having x="TotalCoinsMined" and y="TotalCoinSupply" to contrast the number of available coins versus the total number of mined coins. Used the hover_cols=["CoinName"] parameter to include the cryptocurrency name on each data point.
 
 
-Use hvplot.table to create a data table with all the current tradable cryptocurrencies. The table should have the following columns: "CoinName", "Algorithm", "ProofType", "TotalCoinSupply", "TotalCoinsMined", "Class"
+Used hvplot.table to create a data table with all the current tradable cryptocurrencies. The table has the following columns: "CoinName", "Algorithm", "ProofType", "TotalCoinSupply", "TotalCoinsMined", "Class"
 
 
 
-Optional Challenge
-For the challenge section, upload Jupyter notebook to Amazon SageMaker and deploy it.
-The hvplot library is not included in the built-in anaconda environments, so for this challenge section, use the altair library instead.
-Tasks:
-
-
-Upload  Jupyter notebook and rename it as crypto_clustering_sm.ipynb
-
-
-Select the conda_python3 environment.
-
-
-Install the altair library by running the following code before the initial imports.
 
 !pip install -U altair
 
