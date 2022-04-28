@@ -7,7 +7,8 @@ Tasked with analysis, interpretation, and presentation by generating a report of
 In this project, there are unsupervivsed learning and Amazon SageMaker skills exhibited by clustering cryptocurrencies and creating plots to present results.
 
 Main goals:
-![](kmeancolorclusters.jpg)
+
+![](Kmeancolorclusters.jpg)
 
 Data Preprocessing: Prepare data for dimension reduction with PCA and clustering using K-Means.
 
