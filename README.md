@@ -8,8 +8,6 @@ In this project, there are unsupervivsed learning and Amazon SageMaker skills ex
 
 Main goals:
 
-![](Kmeancolorclusters.jpg)
-
 Data Preprocessing: Prepare data for dimension reduction with PCA and clustering using K-Means.
 
 
@@ -156,3 +154,4 @@ For the Challenge section, create a new Jupyter notebook named crypto_clustering
 
 
 Create and upload a repository with the above files to GitHub and post a link in BootCamp Spot.
+![](Kmeancolorclusters.jpg)
