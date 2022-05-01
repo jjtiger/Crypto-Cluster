@@ -1,12 +1,12 @@
 ![](coolclusters.jpg)
 
-# Crypto-Cluster
-As a Senior Manager at the Advisory Services team on a Big Four firm. One of your most important clients, a prominent investment bank, is interested in offering a new cryptocurrencies investment portfolio for its customers, however, they are lost in the immense universe of cryptocurrencies. 
+# Investment Crypto-Cluster
 
-Tasked with analysis, interpretation, and presentation by generating a report of what cryptocurrencies are available on the trading market and how they can be grouped using classification.
+Tasked with analysis, interpretation, and presentation of a report on what cryptocurrencies are available in the trading market and how they can be grouped using a classification model to find trends and investment opportunities.
+
 In this project, there are unsupervivsed learning and Amazon SageMaker skills exhibited by clustering cryptocurrencies and creating plots to present results.
 
-Main goals:
+Action Plan:
 
 Data Preprocessing: Prepare data for dimension reduction with PCA and clustering using K-Means.
 
@@ -31,7 +31,9 @@ crypto_clustering.ipynb
 
 Data Preprocessing
 
-Using the following requests library, retreive the necessary data from the following API endpoint from CryptoCompare - https://min-api.cryptocompare.com/data/all/coinlist.
+Amazon Sage Maker library in python
+
+API endpoint from CryptoCompare - https://min-api.cryptocompare.com/data/all/coinlist.
 
 Data loaded into a Pandas DataFrame
 
